@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+@import 'variables';
+
+body,
+html {
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	// background: $bgClr;
+	font-family: Poppins, sans-serif;
+	// overflow-x: hidden;
+	// overflow-y: hidden;
+	// overflow: hidden;
+
+	// transform: translateY(-250px);
+	// overscroll-behavior-y: none;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.link-underline {
+	position: relative;
+}
+
+.link-underline::after {
+	content: '';
+	width: 100%;
+	height: 2px;
+	background-color: white;
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: -3px;
+	border-radius: 10px;
+	transition: all 0.5s ease;
+
+	// hide it
+	transform-origin: left;
+	transform: scaleX(0);
+	opacity: 0;
+}
+
+.link-underline:hover::after {
+	transform: scaleX(1);
+	opacity: 1;
+}
+
+.bg {
+	overflow: hidden;
+}
+
+.bg #circle1 {
+	animation: fly 20s linear infinite;
+}
+
+.bg #circle2 {
+	animation: fly2 20s linear infinite;
+}
+
+.bg #circle3 {
+	animation: fly3 20s linear infinite;
+}
+
+@keyframes fly {
+	50% {
+		transform: rotate(0.5turn) translate(100px, 200px) rotate(-0.5turn);
+	}
+	100% {
+		transform: rotate(0.5turn) translate(0) rotate(-0.5turn);
+	}
+}
+
+@keyframes fly2 {
+	50% {
+		transform: rotate(0.5turn) translate(100px, -50px) rotate(-0.5turn);
+	}
+	100% {
+		transform: rotate(0.5turn) translate(0) rotate(-0.5turn);
+	}
+}
+
+@keyframes fly3 {
+	50% {
+		transform: rotate(0.5turn) translate(-600px, 200px) rotate(-0.5turn);
+	}
+	100% {
+		transform: rotate(0.5turn) translate(0) rotate(-0.5turn);
+	}
+}
+
+*::selection {
+    background: #eee;
+    color: #111;
+}
+
+// #scrollContainer {
+// 	overflow: scroll;
+// }
+
+#App {
+	position: fixed;
+	overflow: hidden;
+	// height: 100px;
+	// background: #0f0;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #444;
+}

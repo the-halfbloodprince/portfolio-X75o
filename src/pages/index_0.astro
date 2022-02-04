@@ -1,0 +1,36 @@
+---
+// Component imports and setup JavaScript go here!
+import Header from '../components/Header.tsx'
+import Banner from '../components/Banner.tsx'
+import WhoAmI from '../components/WhoAmI.tsx'
+
+const links = [
+	'Experience',
+	'Projects',
+	'Experiments',
+	`What's Special?`,
+]
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Manish Kumar Das</title>
+
+		<link rel="stylesheet" href={Astro.resolve('../styles/global.scss')} >
+
+		<style>
+			/* scoped CSS styles go here: */
+			/* h1 { ... } */
+		</style>
+
+	</head>
+
+	<body class="bg-[#111] text-white min-h-screen" >
+		<Header links={links} />
+		<Banner />
+		<WhoAmI />
+	</body>
+
+</html>

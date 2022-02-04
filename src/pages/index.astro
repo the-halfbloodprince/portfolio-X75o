@@ -1,0 +1,107 @@
+---
+import SmoothScrollContainer from '../components/SmoothScrollContainer'
+
+const aboutMe = `
+I'm a third-year undergraduate student from the department of geology and geophysics at IIT Kharagpur.
+
+I'm currently actively pursuing software development for the majority of my time, primarily Web Development. The spirit of treating imagination and creativity as challenges and finding ways of solving them has been one of the fundamental attributes of mine. It's in a way, my underlying algorithm to keep thinking about what can be done and how can it be done and that's what keeps me going.
+
+Apart from that I am really fascinated and obsessed by the way software solves problems in such effective ways and has been able to substantially increase the quality of life over the last two decades. But most importantly, I find it quite a bit of fun and I don't see any boundaries to which this can expand, the possibilities seem endless and I'm very obsessed with the idea of pushing it even further with all my might and discover amazing stuff on the way.
+`
+
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Manish Kumar Das</title>
+
+		<link rel="stylesheet" href={Astro.resolve('../styles/global.scss')} >
+
+		<style>
+			/* scoped CSS styles go here: */
+			/* h1 { ... } */
+		</style>
+
+	</head>
+
+	<body class="bg-[#111] text-white min-h-screen" id="body" >
+
+            <div id="App" class="px-20 py-20" >
+                <div id="scrollContainer" data-scroll-container>
+
+                        <!-- intro page -->
+                    <div class="intro text-9xl ">
+                        Hi, I'm<br />Manish
+                    </div>
+
+                    <div class="mt-20 text-7xl">
+                        <span>Full Stack Software Developer</span>
+                        <span>Full Stack Software Developer</span>
+                        <span>Full Stack Software Developer</span>
+                    </div>
+                    <div class="flex space-x-20">
+                        <div class="mt-20 flex text-4xl items-center space-x-4">
+                            <img src="/assam_map.svg" alt="" class="w-20"> <div>Jorhat, Assam</div>
+                        </div>
+                        <div class="mt-20 flex text-4xl items-center space-x-4">
+                            <img src="/kgp.svg" alt="" class="w-16"> <div>IIT Kharagpur</div>
+                        </div>
+                    </div>
+
+                    <!-- about page -->
+                    <div>
+                        <div class="whitespace-pre-wrap text-6xl">{aboutMe}</div>
+                    </div>
+
+                    <!-- </SmoothScrollContainer> -->
+                </div>
+            </div>
+
+
+	</body>
+
+</html>
+
+<script>
+
+    setBodyHeightToScrollContainerHeight = () => {
+
+        document.body.style.height = `${document.getElementById('scrollContainer').getBoundingClientRect().height}px`
+    }
+
+    setBodyHeightToScrollContainerHeight()
+
+    window.addEventListener('resize', () => {
+        setBodyHeightToScrollContainerHeight()
+    })
+
+    const config = {
+        ease: 0.06,
+        current: 0,
+        prev: 0,
+        prevRounded: 0
+    }
+
+    const scroll = () => {
+
+        config.current = window.scrollY
+        config.prev += ((config.current - config.prev) * config.ease)
+        config.prevRounded = Math.round(config.prev * 100) / 100
+
+        const diff = config.current - config.prevRounded
+        const acc = (diff / window.innerWidth)
+        const velocity = +acc
+        const skew = velocity * 17
+
+        document.getElementById('scrollContainer').style.transform = `translateY(-${config.prevRounded}px) skewY(${skew}deg)`
+
+        requestAnimationFrame(() => scroll())
+    }
+
+    requestAnimationFrame(() => scroll())
+
+
+</script>
